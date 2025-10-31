@@ -11,3 +11,6 @@ Endpoint delete data :
 
 Endpoint search berdasarkan nama :
 ![alt text](<ss/Tugas5/Search berdasarkan nama.png>)
+
+Endpoint search berdasarkan tanggal :
+![alt text](<ss/Tugas5/Search berdasarkan tanggal.png>)
