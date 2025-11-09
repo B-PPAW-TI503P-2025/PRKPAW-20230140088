@@ -9,6 +9,8 @@ const morgan = require("morgan");
 const presensiRoutes = require("./routes/presensi");
 const reportRoutes = require("./routes/reports");
 
+const authRoutes = require('./routes/auth');
+
 // // Middleware (HARUS DI ATAS ROUTE SPESIFIK)
 app.use(cors());
 app.use(express.json());
@@ -28,6 +30,7 @@ app.use('/api/books', bookRoutes);
 app.use("/api/books", ruteBuku);
 app.use("/api/presensi", presensiRoutes);
 app.use("/api/reports", reportRoutes);
+app.use('/api/auth', authRoutes);
 
 
 app.get('/', (req, res) => {
