@@ -1,34 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
+import DashboardPage from './components/DashboardPage';
 
 function App() {
-  // Gunakan state untuk menyimpan input nama
-  const [name, setName] = useState('');
-
-  // Fungsi yang akan dipanggil saat input berubah
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>Aplikasi Sambutan React</h1>
-
-      <label htmlFor="nameInput">Masukkan Nama Anda: </label>
-      {/* Input untuk menerima nama pengguna */}
-      <input
-        id="nameInput"
-        type="text"
-        value={name}
-        onChange={handleNameChange} // Panggil fungsi saat input berubah
-        placeholder="Ketik nama Anda di sini"
-        style={{ margin: '10px', padding: '8px' }}
-      />
-
-      {/* Tampilkan pesan selamat datang */}
-      <h2>Hello, {name || '[nama]'}!</h2>
-      <p>Ini adalah tugas aplikasi React sederhana.</p>
-    </div>
+    <Router>
+      <div>
+        {/* Navigasi ini bisa dihapus jika tidak diperlukan */}
+        <nav className="p-4 bg-gray-100">
+          <Link to="/login" className="mr-4">Login</Link>
+          <Link to="/register">Register</Link>
+        </nav>
+        
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/" element={<LoginPage />} /> 
+        </Routes>
+      </div>
+    </Router>
   );
 }
-
 export default App;

@@ -5,7 +5,8 @@ const JWT_SECRET = 'INI_ADALAH_KUNCI_RAHASIA_ANDA_YANG_SANGAT_AMAN';
 
 exports.register = async (req, res) => {
   try {
-    const { nama, email, password, role } = req.body;
+    const { name, email, password, role } = req.body;
+    const nama = name;  // samakan dengan field database
 
     if (!nama || !email || !password) {
       return res.status(400).json({ message: "Nama, email, dan password harus diisi" });
@@ -15,12 +16,12 @@ exports.register = async (req, res) => {
       return res.status(400).json({ message: "Role tidak valid. Harus 'mahasiswa' atau 'admin'." });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10); 
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({
       nama,
       email,
       password: hashedPassword,
-      role: role || 'mahasiswa' 
+      role: role || 'mahasiswa'
     });
 
     res.status(201).json({
@@ -35,6 +36,8 @@ exports.register = async (req, res) => {
     res.status(500).json({ message: "Terjadi kesalahan pada server", error: error.message });
   }
 };
+
+
 
 
 exports.login = async (req, res) => {
