@@ -10,6 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      User.hasMany(models.Presensi, { 
+    foreignKey: 'userId', 
+    as: 'presensi' 
+  });
+
       // Definisikan relasi di sini jika ada
       // Contoh: User.hasMany(models.Presensi, { foreignKey: 'userId' });
     }
@@ -43,5 +48,13 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
   });
+
+  User.associate = (models) => {
+    // Definisi relasi: User memiliki banyak Presensi
+    User.hasMany(models.Presensi, {
+        foreignKey: 'userId', 
+        as: 'presensis' 
+    });
+};
   return User;
 };

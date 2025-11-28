@@ -1,13 +1,12 @@
 const { User } = require('../models');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');	
-const JWT_SECRET = 'INI_ADALAH_KUNCI_RAHASIA_ANDA_YANG_SANGAT_AMAN';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 exports.register = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
-    const nama = name;  // samakan dengan field database
-
+    const { nama, email, password, role } = req.body;
+   
     if (!nama || !email || !password) {
       return res.status(400).json({ message: "Nama, email, dan password harus diisi" });
     }

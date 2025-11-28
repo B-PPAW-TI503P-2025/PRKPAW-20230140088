@@ -1,5 +1,6 @@
 const bookRoutes = require('./routes/books');
 const express = require('express');
+require('dotenv').config();
 const cors = require('cors');
 const app = express();
 const PORT = 3001;

@@ -1,47 +1,44 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Gunakan Link untuk navigasi, bukan useNavigate
 
 export default function DashboardPage() {
-  const navigate = useNavigate();
+    // Hapus handleLogout dan useNavigate karena sudah diurus oleh Navbar
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
-  };
+    return (
+        <div className="max-w-4xl mx-auto p-8 pt-16 min-h-screen bg-gray-50">
+            <div className="text-center mb-12">
+                
+                {/* Header */}
+                <h1 className="text-5xl font-extrabold text-blue-700 mb-4 tracking-tight">
+                    Dashboard Aplikasi Presensi
+                </h1>
+                <p className="text-xl text-gray-600">
+                    Selamat datang! Silakan pilih menu untuk memulai.
+                </p>
+            </div>
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100 flex items-center justify-center px-4">
-      <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-md text-center border border-gray-200">
-        
-        {/* Header */}
-        <h1 className="text-4xl font-extrabold text-blue-700 mb-4 tracking-tight">
-          Dashboard
-        </h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                {/* Kartu Aksi 1: Presensi (Check-In/Out) */}
+                <Link to="/presensi" className="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl">
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-green-500">
+                        <h2 className="text-3xl font-bold text-green-600 mb-3">Lakukan Presensi</h2>
+                        <p className="text-gray-500">
+                            Masuk dan keluar untuk mencatat kehadiran harian Anda.
+                        </p>
+                    </div>
+                </Link>
 
-        <p className="text-gray-600 text-lg mb-8">
-          Selamat datang di halaman Dashboard kamu!  
-        </p>
-
-        {/* Info Card */}
-        <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 shadow-inner mb-8">
-          <h2 className="text-xl font-semibold text-blue-800 mb-2">
-            Status Login: <span className="text-green-600">Aktif</span>
-          </h2>
-          <p className="text-sm text-gray-600">
-            Kamu berhasil login dan sekarang berada di halaman dashboard.
-          </p>
-        </div>
-
-        {/* Logout Button */}
-        <button
-          onClick={handleLogout}
-          className="w-full py-3 bg-red-500 text-white font-semibold rounded-xl 
-          shadow-md hover:bg-red-600 transition-all duration-200 
-          focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
-        >
-          Logout
-        </button>
-      </div>
-    </div>
-  );
+                {/* Kartu Aksi 2: Laporan Admin */}
+                <Link to="/reports" className="block transform transition duration-300 hover:scale-[1.03] hover:shadow-2xl">
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-yellow-500">
+                        <h2 className="text-3xl font-bold text-yellow-600 mb-3">Laporan (Admin)</h2>
+                        <p className="text-gray-500">
+                            Lihat seluruh data presensi harian (Akses khusus admin).
+                        </p>
+                    </div>
+                </Link>
+            </div>
+        </div>
+    );
 }
