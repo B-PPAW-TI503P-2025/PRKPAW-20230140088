@@ -5,6 +5,7 @@ const presensiController = require('../controllers/presensiController');
 const { authenticateToken } = require('../middleware/permissionMiddleware'); 
 
 // Terapkan authenticateToken untuk semua rute presensi yang membutuhkan user ID
+router.post('/check-in', [authenticateToken, presensiController.upload.single('image')], presensiController.CheckIn);
 router.post('/check-in', authenticateToken, presensiController.CheckIn);
 router.post('/check-out', authenticateToken, presensiController.CheckOut);
 
