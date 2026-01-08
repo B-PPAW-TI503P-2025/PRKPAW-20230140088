@@ -62,6 +62,15 @@ function Navbar() {
             </Link>
 
             <Link
+              to="/monitoring"
+              className={`px-6 py-2.5 rounded-full font-medium transition-all ${
+                isActive("/monitoring") ? activeClass : inactiveClass
+              }`}
+            >
+              Monitoring
+            </Link>
+
+            <Link
               to="/presensi"
               className={`px-6 py-2.5 rounded-full font-medium transition-all ${
                 isActive("/presensi") ? activeClass : inactiveClass
